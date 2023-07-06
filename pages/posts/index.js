@@ -1,3 +1,4 @@
+import { getAllPosts } from "../../lib/posts-util";
 import AllPosts from "../components/posts/all-posts";
 
 const DUMMY_POSTS = [
@@ -25,7 +26,16 @@ const DUMMY_POSTS = [
 ];
 
 function AllPostsPage(props) {
-    return <AllPosts posts={DUMMY_POSTS}/>
+    return <AllPosts posts={props.posts}/>
 }
 
 export default AllPostsPage;
+
+export function getStaticProps() {
+    const posts = getAllPosts();
+    return {
+        props: {
+            posts: posts
+        }
+    }
+}
